@@ -1,0 +1,24 @@
+{
+    "name": "cwhsu/datastructure",
+    "description": "data structure practice",
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "authors": [
+        {
+            "name": "cwhsu",
+            "email": "cwhsu1984@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DataStructure\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}

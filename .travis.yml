@@ -1,0 +1,10 @@
+language: php
+
+php:
+  - '7.1'
+  - '7.2'
+
+install:
+  - composer install
+
+script: phpunit -c phpunit.xml.dist --coverage-text
