@@ -81,6 +81,44 @@ class TreeTest extends TestCase
         $this->assertEquals([7, 3, 6, 1, 5, 2, 4], $result);
     }
 
+    public function testLevelorderConstruct(): void
+    {
+        $tree   = $this->createTreeLevelorder();
+        $result = $tree->inorder($tree->getRoot());
+        $this->assertEquals([4, 2, 10, 5, 11, 1, 6, 13, 3, 7], $result);
+    }
+
+    public function testLevelorderInsert(): void
+    {
+        $tree = $this->createTreeLevelorder();
+        $tree->levelorderInsert(8);
+        $tree->levelorderInsert(9);
+        $tree->levelorderInsert(12);
+        $result = $tree->inorder($tree->getRoot());
+        $this->assertEquals([8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 7], $result);
+    }
+
+    public function testLevelorderInsertCreateCompleteBinaryTree(): void
+    {
+        $tree = new Tree(null);
+        $tree->levelorderInsert(1);
+        $tree->levelorderInsert(2);
+        $tree->levelorderInsert(3);
+        $tree->levelorderInsert(4);
+        $tree->levelorderInsert(5);
+        $tree->levelorderInsert(6);
+        $result = $tree->inorder($tree->getRoot());
+        $this->assertEquals([4, 2, 5, 1, 6, 3], $result);
+    }
+
+    private function createTreeLevelorder(): Tree
+    {
+        $tree = new Tree(null);
+        $tree->levelorderConstruct('1 2 3 4 5 6 7 0 0 10 11 0 13');
+
+        return $tree;
+    }
+
     private function createTree(): Tree
     {
         $root  = new TreeNode(null, 1);

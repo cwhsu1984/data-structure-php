@@ -7,7 +7,7 @@ class Tree
 
     private $result = [];
 
-    public function __construct(TreeNode $root)
+    public function __construct(?TreeNode $root)
     {
         $this->root = $root;
     }
@@ -143,5 +143,69 @@ class Tree
         }
 
         return $this->result;
+    }
+
+    public function levelorderConstruct(string $input): void
+    {
+        $array  = \explode(' ', $input);
+        $queue  = [];
+        $parent = null;
+        $data   = \array_shift($array);
+
+        if ($data && $data !== 0) {
+            $parent     = new TreeNode(null, $data);
+            $this->root = $parent;
+        }
+
+        while ($array) {
+            $data = \array_shift($array);
+
+            if ($data && $data !== 0) {
+                $left = new TreeNode($parent, $data);
+                $parent->setLeft($left);
+                $queue[] = $left;
+            }
+            $data = \array_shift($array);
+
+            if ($data && $data !== 0) {
+                $right   = new TreeNode($parent, $data);
+                $queue[] = $right;
+                $parent->setRight($right);
+            }
+            $parent = \array_shift($queue);
+        }
+    }
+
+    public function levelorderInsert(int $data): void
+    {
+        $node = $this->root;
+
+        if (!$node) {
+            $this->root = new TreeNode(null, $data);
+
+            return;
+        }
+
+        $queue[] = $node;
+
+        while ($queue) {
+            $node = \array_shift($queue);
+
+            if ($node->getLeft()) {
+                $queue[] = $node->getLeft();
+            } else {
+                $node->setLeft(new TreeNode($node, $data));
+
+                break;
+            }
+
+            if ($node->getRight()) {
+                $queue[] = $node->getRight();
+            } else {
+                $node->setRight(new TreeNode($node, $data));
+
+                break;
+            }
+        }
     }
 }
