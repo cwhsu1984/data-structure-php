@@ -17,17 +17,22 @@ class TreeNode
         $this->data   = $data;
     }
 
+    public function setParent(self $parent): void
+    {
+        $this->parent = $parent;
+    }
+
     public function getParent(): ?self
     {
         return $this->parent;
     }
 
-    public function setLeft(self $left): void
+    public function setLeft(?self $left): void
     {
         $this->left = $left;
     }
 
-    public function setRight(self $right): void
+    public function setRight(?self $right): void
     {
         $this->right = $right;
     }
