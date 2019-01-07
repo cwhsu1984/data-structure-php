@@ -3,7 +3,7 @@ namespace DataStructure\Tree;
 
 class TreeNode
 {
-    private $data;
+    protected $data;
 
     private $parent;
 
